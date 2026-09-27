@@ -1,0 +1,195 @@
+# ===========================================================================
+# Multilingual file for the TOS 7 Docker application "caddydocker".
+# File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
+# The App Center picks the text matching the user's device language;
+# untranslated nodes fall back to English, which the official guide allows.
+# Fields: name (app title), auth (upstream author), descript (up to 512
+# chars), release_note, important (up to 512 chars).
+# Translations come from tosapp.json "translations"; run
+#   tosdocker lang <app>          to re-render this file
+#   tosdocker translate <app>     to see what still needs translating
+# ===========================================================================
+[en-us]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[zh-cn]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy 是一款用 Go 编写、自带自动 HTTPS 的开源 Web 服务器与反向代理。你可以用它发布自己的网站，也可以把 NAS 或局域网里的任意服务放到好记的路径或域名后面，全部配置只需一个简短的 Caddyfile。本应用在 NAS 上以非 root 容器运行 Docker Hub 官方镜像，Caddyfile、网站文件与证书都保存在应用数据目录中，重启与更新都不会丢失。"
+release_note = "1. 首次发布：来自 Docker Hub 的 Caddy 2.11.4，以非 root 容器运行。Caddyfile 与网站文件保存在应用数据目录，首次启动会生成默认站点；配置写错时会自动回退到内置默认配置，不会导致应用不可用。"
+important    = "需要 DockerEngine（缺失时应用中心会自动提示安装）；若 NAS 无法直连 Docker Hub，请先在 DockerEngine 中配置镜像加速。安装后从 http://<NAS-IP>:8002/ 打开。本应用只发布一个端口，容器内 Caddy 监听 8080，因此无法为公网域名申请自动 HTTPS 证书，需要本地证书可用 'tls internal'。所有文件都在 DockerAppData/caddydocker 目录：配置在 config/Caddyfile， 网站文件在 www，证书在 data。改完配置用 'docker exec caddydocker caddy reload --config /config/Caddyfile' 热加载；Caddyfile 写错时应用会继续以内置默认配置运行，不会中断服务。卸载并删除数据前请先备份应用数据目录。"
+
+[zh-hk]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy 是一款以 Go 撰寫、內建自動 HTTPS 的開源網頁伺服器與反向代理。你可以用它發佈自己的網站，也可以把 NAS 或區域網絡內的任何服務放到好記的路徑或網域後面，全部設定只需一個簡短的 Caddyfile。本應用在 NAS 上以非 root 容器執行 Docker Hub 官方映像，Caddyfile、網站檔案與憑證都保存在應用資料目錄中，重新啟動與更新都不會遺失。"
+release_note = "1. 首次發佈：來自 Docker Hub 的 Caddy 2.11.4，以非 root 容器執行。Caddyfile 與網站檔案保存在應用資料目錄，首次啟動會產生預設站台；設定寫錯時會自動回退到內建預設設定，不會導致應用無法使用。"
+important    = "需要 DockerEngine（缺少時應用中心會自動提示安裝）；若 NAS 無法直連 Docker Hub，請先在 DockerEngine 中設定映像加速。安裝後從 http://<NAS-IP>:8002/ 開啟。本應用只發佈一個連接埠，容器內 Caddy 監聽 8080，因此無法為公網網域申請自動 HTTPS 憑證，需要本地憑證可用 'tls internal'。所有檔案都在 DockerAppData/caddydocker 目錄：設定在 config/Caddyfile， 網站檔案在 www，憑證在 data。改完設定用 'docker exec caddydocker caddy reload --config /config/Caddyfile' 熱載入；Caddyfile 寫錯時應用會繼續以內建預設設定執行，不會中斷服務。解除安裝並刪除資料前請先備份應用資料目錄。"
+
+[fr-fr]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[de-de]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[it-it]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[es-es]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[hu-hu]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[ja-jp]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[ko-kr]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[pl-pl]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[ru-ru]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[tr-tr]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[pt-pt]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[ar-sa]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[cs-cz]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[he-il]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[id-id]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[nb-no]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[nl-nl]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[sv-se]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[th-th]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+
+[vi-vn]
+name         = "Caddy Web Server"
+auth         = "caddyserver"
+version      = "@@VERSION@@"
+descript     = "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update."
+release_note = "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app."
+important    = "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal."
+

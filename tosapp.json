@@ -1,0 +1,118 @@
+{
+  "app_id": "caddydocker",
+  "title": "Caddy Web Server",
+  "image": "caddy:2.11.4-alpine",
+  "repo_name": "caddy",
+  "mode": "wrapper",
+  "entrypoint_file": "src/entrypoint.sh",
+  "wrapper_note": "the upstream image starts as root and keeps its configuration in root-owned\n/etc/caddy. The entrypoint below keeps the user-editable Caddyfile in the\nmounted application data directory, seeds a working default on the first start\nand refuses to run an unusable Caddyfile (it falls back to a built-in default\ninstead of restarting in a loop).\n",
+  "wrapper_note_readme": "- **Entrypoint wrapper**: the upstream image starts as root and reads its config from root-owned `/etc/caddy`, so the compose file replaces the entrypoint with `src/entrypoint.sh`. It seeds a working Caddyfile into the `config` volume on the first start, checks before starting that the file is parseable and really listens on container port 8080 (the one published port), and falls back to a built-in default when it is not, so a typo cannot take the application down or make it unreachable.",
+  "container_port": 8080,
+  "category": [
+    "Web_Services"
+  ],
+  "user": "1000:1000",
+  "volumes": [
+    {
+      "host": "/Volume1/DockerAppData/caddydocker/config",
+      "container": "/config"
+    },
+    {
+      "host": "/Volume1/DockerAppData/caddydocker/data",
+      "container": "/data"
+    },
+    {
+      "host": "/Volume1/DockerAppData/caddydocker/www",
+      "container": "/www"
+    }
+  ],
+  "env": {
+    "TZ": "Asia/Shanghai"
+  },
+  "healthcheck": [
+    "CMD-SHELL",
+    "curl -s -o /dev/null http://127.0.0.1:8080/ || exit 1"
+  ],
+  "auth": "caddyserver",
+  "upstream_url": "https://github.com/caddyserver/caddy",
+  "upstream_license": "Apache-2.0",
+  "license": "Apache-2.0",
+  "descript": "Caddy is a powerful, open-source web server and reverse proxy with automatic HTTPS, written in Go. Serve your own website, and put any service running on your NAS or LAN behind a friendly path or host name - with one short configuration file. This app runs the official Docker Hub image as a non-root container and keeps the Caddyfile, your website files and the certificates in the application data folder, so nothing is lost on restart or update.",
+  "release_note": "1. First release: Caddy 2.11.4 from Docker Hub, running as a non-root container on your NAS. The Caddyfile and your website files live in the application data folder, a default site is created on the first start, and an unusable Caddyfile is replaced by a built-in default instead of breaking the app.",
+  "important": "Requires DockerEngine (installed if missing); add a registry mirror if Docker Hub is unreachable. Open http://<NAS-IP>:8002/. Data lives in DockerAppData/caddydocker: Caddyfile in config, files in www, certificates in data. Apply edits with 'docker exec caddydocker caddy reload --config /config/Caddyfile'. Only port 8080 is published, so no automatic HTTPS for a public domain; a broken Caddyfile keeps the app on a built-in default. Back up the data folder before uninstalling with data removal.",
+  "content_volume": "/www",
+  "config_file": "config/Caddyfile",
+  "data_notes": "All state lives in the application data folder: `config/Caddyfile` is the configuration you edit, `www/` holds the files that are served, `data/` holds certificates and Caddy's runtime state, and `config/caddy/autosave.json` is Caddy's own copy of the running configuration.",
+  "design_notes": [
+    "**Editable configuration in the data volume.** The upstream image keeps its Caddyfile in `/etc/caddy` and starts as root; the wrapper seeds it into `config/Caddyfile` instead, so it is editable from the NAS and survives application updates.",
+    "**An unusable Caddyfile cannot take the application down.** Before starting, the wrapper adapts the Caddyfile and requires a listener on container port 8080 (the only published port); on failure it starts with a built-in default. A typo therefore leaves the app reachable instead of causing a restart loop.",
+    "**No privileged port needed.** The container listens on 8080 and runs as uid 1000, so the app does not rely on the `cap_net_bind_service` file capability of the upstream image and needs no `cap_add`.",
+    "**Fixed image tag, never `:latest`**, Docker Hub only, no `privileged`, no `network_mode: host`, no Docker socket.",
+    "**Health check** probing the service on container port 8080."
+  ],
+  "limitations": [
+    "Only one host port is published (8002). Automatic HTTPS for a public domain needs ports 80 and 443 and is therefore not available; use `tls internal` or your own certificate for TLS.",
+    "Sites have to listen on container port 8080 to be reachable. A Caddyfile that does not listen on 8080 is ignored and replaced by the built-in default site.",
+    "If you switch the published site to TLS on port 8080, the TOS health check (plain HTTP) may report the app as unhealthy even while it still serves HTTPS.",
+    "The default site is served over plain HTTP on the LAN. Do not expose the published port to the internet without TLS."
+  ],
+  "runtime_files": [
+    {
+      "path": "config/Caddyfile",
+      "purpose": "main configuration (sites, reverse proxies, TLS); seeded on the first start",
+      "created": "first start",
+      "growth": "static",
+      "lifecycle": "never overwritten; user owned"
+    },
+    {
+      "path": "config/README.txt",
+      "purpose": "how-to for the NAS administrator",
+      "created": "first start",
+      "growth": "static",
+      "lifecycle": "never overwritten; safe to delete"
+    },
+    {
+      "path": "config/caddy/autosave.json",
+      "purpose": "Caddy's own copy of the running configuration (used by --resume)",
+      "created": "first start",
+      "growth": "small",
+      "lifecycle": "managed by Caddy; do not edit"
+    },
+    {
+      "path": "data/caddy",
+      "purpose": "certificates, private keys, instance id and storage locks",
+      "created": "first start / on demand",
+      "growth": "grows with the number of certificates",
+      "lifecycle": "managed by Caddy; back it up to keep your certificates"
+    },
+    {
+      "path": "www/index.html",
+      "purpose": "placeholder welcome page",
+      "created": "first start",
+      "growth": "static",
+      "lifecycle": "never overwritten; replace it with your own site"
+    }
+  ],
+  "platform": "x86_64",
+  "publisher": "Moechz",
+  "compose_project": "caddydocker",
+  "github_repo": "caddy",
+  "upstream_version": "2.11.4",
+  "release_tag_prefix": "v",
+  "version": "2.11.4-1",
+  "help": "https://github.com/Moechz/caddy/issues",
+  "official": "https://github.com/caddyserver/caddy-docker",
+  "translations": {
+    "zh-cn": {
+      "descript": "Caddy 是一款用 Go 编写、自带自动 HTTPS 的开源 Web 服务器与反向代理。你可以用它发布自己的网站，也可以把 NAS 或局域网里的任意服务放到好记的路径或域名后面，全部配置只需一个简短的 Caddyfile。本应用在 NAS 上以非 root 容器运行 Docker Hub 官方镜像，Caddyfile、网站文件与证书都保存在应用数据目录中，重启与更新都不会丢失。",
+      "important": "需要 DockerEngine（缺失时应用中心会自动提示安装）；若 NAS 无法直连 Docker Hub，请先在 DockerEngine 中配置镜像加速。安装后从 http://<NAS-IP>:8002/ 打开。本应用只发布一个端口，容器内 Caddy 监听 8080，因此无法为公网域名申请自动 HTTPS 证书，需要本地证书可用 'tls internal'。所有文件都在 DockerAppData/caddydocker 目录：配置在 config/Caddyfile， 网站文件在 www，证书在 data。改完配置用 'docker exec caddydocker caddy reload --config /config/Caddyfile' 热加载；Caddyfile 写错时应用会继续以内置默认配置运行，不会中断服务。卸载并删除数据前请先备份应用数据目录。",
+      "release_note": "1. 首次发布：来自 Docker Hub 的 Caddy 2.11.4，以非 root 容器运行。Caddyfile 与网站文件保存在应用数据目录，首次启动会生成默认站点；配置写错时会自动回退到内置默认配置，不会导致应用不可用。"
+    },
+    "zh-hk": {
+      "descript": "Caddy 是一款以 Go 撰寫、內建自動 HTTPS 的開源網頁伺服器與反向代理。你可以用它發佈自己的網站，也可以把 NAS 或區域網絡內的任何服務放到好記的路徑或網域後面，全部設定只需一個簡短的 Caddyfile。本應用在 NAS 上以非 root 容器執行 Docker Hub 官方映像，Caddyfile、網站檔案與憑證都保存在應用資料目錄中，重新啟動與更新都不會遺失。",
+      "important": "需要 DockerEngine（缺少時應用中心會自動提示安裝）；若 NAS 無法直連 Docker Hub，請先在 DockerEngine 中設定映像加速。安裝後從 http://<NAS-IP>:8002/ 開啟。本應用只發佈一個連接埠，容器內 Caddy 監聽 8080，因此無法為公網網域申請自動 HTTPS 憑證，需要本地憑證可用 'tls internal'。所有檔案都在 DockerAppData/caddydocker 目錄：設定在 config/Caddyfile， 網站檔案在 www，憑證在 data。改完設定用 'docker exec caddydocker caddy reload --config /config/Caddyfile' 熱載入；Caddyfile 寫錯時應用會繼續以內建預設設定執行，不會中斷服務。解除安裝並刪除資料前請先備份應用資料目錄。",
+      "release_note": "1. 首次發佈：來自 Docker Hub 的 Caddy 2.11.4，以非 root 容器執行。Caddyfile 與網站檔案保存在應用資料目錄，首次啟動會產生預設站台；設定寫錯時會自動回退到內建預設設定，不會導致應用無法使用。"
+    }
+  },
+  "host_port": 8002
+}
